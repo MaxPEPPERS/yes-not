@@ -5,6 +5,10 @@
 // Initialize the game
 const game = new Game('gameCanvas');
 
+// Create and add the map first so it renders under other objects
+const map = new Map();
+game.addGameObject(map);
+
 // Create a player
 const player = new Player(
     game.width / 2 - 15,
