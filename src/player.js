@@ -6,16 +6,16 @@ class Player {
     }
 
 update(deltaTime, keys) {
-    if (keys['ArrowUp'] || keys['KeyW']) {
+    if (keys['ArrowUp'] || keys['Keyw']) {
         this.y -= this.speed;
     }
-    if (keys['ArrowDown'] || keys['KeyS']) {
+    if (keys['ArrowDown'] || keys['Keys']) {
         this.y += this.speed;
     }
-    if (keys['ArrowLeft'] || keys['KeyA']) {
+    if (keys['ArrowLeft'] || keys['Keya']) {
         this.x -= this.speed;
     }
-    if (keys['ArrowRight'] || keys['KeyD']) {
+    if (keys['ArrowRight'] || keys['Keyd']) {
         this.x += this.speed;
     }
 } 
