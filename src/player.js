@@ -1,32 +1,32 @@
 class Player {
     constructor(x, y) {
-        this.x = x + 15;
-        this.y = y - 5;
-        this.speed = 40;
+        this.x = x; // must be multiple of 40 for grid alignment
+        this.y = y;
+        this.size = 40;
+        this.speed = 40; // tile-based movement
     }
 
-    update(deltaTime, keys) {
-        if (keys['ArrowUp'] || keys['w']) {
+    update(deltaTime, keys, map) {
+        const tileSize = map.tileSize;
+        let col = Math.floor(this.x / tileSize);
+        let row = Math.floor(this.y / tileSize);
+
+        if ((keys["ArrowUp"] || keys["w"]) && row > 0 && !map.isWall(row - 1, col)) {
             this.y -= this.speed;
-            if (this.y < 0) this.y = 560; //Makes the player wrap around the screen
         }
-         if (keys['ArrowDown'] || keys['s']) {
+        if ((keys["ArrowDown"] || keys["s"]) && row < map.grid.length - 1 && !map.isWall(row + 1, col)) {
             this.y += this.speed;
-            if (this.y > 560) this.y = 0;
         }
-        if (keys['ArrowLeft'] || keys['a']) {
+        if ((keys["ArrowLeft"] || keys["a"]) && col > 0 && !map.isWall(row, col - 1)) {
             this.x -= this.speed;
-            if (this.x < 0) this.x = 760;
         }
-        if (keys['ArrowRight'] || keys['d']) {
+        if ((keys["ArrowRight"] || keys["d"]) && col < map.grid[0].length - 1 && !map.isWall(row, col + 1)) {
             this.x += this.speed;
-            if (this.x > 760) this.x = 0;
         }
-    } 
-    
+    }
+
     render(ctx) {
         ctx.fillStyle = '#FF0000';
-        ctx.fillRect(this.x, this.y, 40, 40);
+        ctx.fillRect(this.x, this.y, this.size, this.size);
     }
 }
-setTimeout
